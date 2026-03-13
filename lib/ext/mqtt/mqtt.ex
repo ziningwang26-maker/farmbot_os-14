@@ -14,6 +14,8 @@ defmodule FarmbotOS.MQTT do
     TopicSupervisor
   }
 
+  alias FarmbotOS.AIManager.MQTTHandler, as: AIMQTTHandler
+
   alias FarmbotOS.Leds
 
   alias __MODULE__, as: State
@@ -59,6 +61,11 @@ defmodule FarmbotOS.MQTT do
 
   def handle_message([_, _, "sync" | _] = topic, payload, s) do
     Support.forward_message(SyncHandler, {topic, payload})
+    {:ok, s}
+  end
+
+  def handle_message([_, _, "ai_commands"] = topic, payload, s) do
+    Support.forward_message(AIMQTTHandler, {topic, payload})
     {:ok, s}
   end
 

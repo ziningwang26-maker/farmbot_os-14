@@ -24,6 +24,7 @@ config :plug, :validate_header_keys_during_test, true
   FarmbotOS.DirtyWorker.Supervisor,
   FarmbotOS.EagerLoader.Supervisor,
   FarmbotOS.MQTT.ChannelSupervisor,
-  FarmbotOS.MQTT.Supervisor
+  FarmbotOS.MQTT.Supervisor,
+  FarmbotOS.AIManager.Supervisor
 ]
 |> Enum.map(fn mod -> config :farmbot, mod, children: [] end)

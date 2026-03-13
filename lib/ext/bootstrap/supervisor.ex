@@ -24,7 +24,8 @@ defmodule FarmbotOS.Bootstrap.Supervisor do
       FarmbotOS.MQTT.Supervisor,
       FarmbotOS.API.ImageUploader,
       FarmbotOS.Bootstrap.DropPasswordTask,
-      FarmbotOS.API.Ping
+      FarmbotOS.API.Ping,
+      FarmbotOS.AIManager.Supervisor
     ])
   end
 end

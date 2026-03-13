@@ -11,6 +11,8 @@ defmodule FarmbotOS.MQTT.TopicSupervisor do
     TerminalHandler
   }
 
+  alias FarmbotOS.AIManager.MQTTHandler, as: AIMQTTHandler
+
   def start_link(args, opts \\ [name: __MODULE__]) do
     Supervisor.start_link(__MODULE__, args, opts)
   end
@@ -30,7 +32,8 @@ defmodule FarmbotOS.MQTT.TopicSupervisor do
       RPCHandler,
       SyncHandler,
       TelemetryHandler,
-      TerminalHandler
+      TerminalHandler,
+      AIMQTTHandler
     ]
 
     children = Enum.map(list, mapper)

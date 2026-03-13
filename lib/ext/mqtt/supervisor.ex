@@ -58,7 +58,8 @@ defmodule FarmbotOS.MQTT.Supervisor do
         {"bot/#{username}/from_clients", 0},
         {"bot/#{username}/ping/#", 0},
         {"bot/#{username}/sync/#", 0},
-        {"bot/#{username}/terminal_input", 0}
+        {"bot/#{username}/terminal_input", 0},
+        {"bot/#{username}/ai_commands", 0}
       ]
     ]
 
