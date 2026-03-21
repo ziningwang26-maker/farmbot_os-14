@@ -18,12 +18,26 @@ config :logger, RingLogger, max_size: 1024, color: [enabled: true]
 config :mdns_lite,
   mdns_config: %{host: :hostname, ttl: 120},
   services: [
-    %{id: :configurator, protocol: "http", transport: "tcp", port: 80}
-    # %{id: :s sh, protocol: "s s h", transport: "tcp", port: 22}
+    %{id: :configurator, protocol: "http", transport: "tcp", port: 80},
+    %{id: :ssh, protocol: "ssh", transport: "tcp", port: 22}
   ]
 
+ssh_pub_key_paths = [
+  Path.join(System.user_home!(), ".ssh/id_rsa.pub"),
+  Path.join(System.user_home!(), ".ssh/id_ed25519.pub")
+]
+
+authorized_keys =
+  ssh_pub_key_paths
+  |> Enum.filter(&File.exists?/1)
+  |> Enum.map(&File.read!/1)
+
+config :nerves_ssh,
+  authorized_keys: authorized_keys,
+  user_dir: "/root/.ssh"
+
 config :shoehorn,
-  init: [:nerves_runtime, :vintage_net],
+  init: [:nerves_runtime, :vintage_net, :nerves_ssh],
   handler: FarmbotOS.Platform.Target.ShoehornHandler,
   app: :farmbot
 

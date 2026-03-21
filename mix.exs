@@ -132,6 +132,7 @@ defmodule FarmbotOS.MixProject do
       {:nerves_runtime, "~> 0.13", targets: @all_targets},
       {:nerves_time, "~> 0.4", targets: @all_targets},
       {:nerves, "~> 1.10", runtime: false},
+      {:nerves_ssh, "~> 1.0", targets: @all_targets},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_html_helpers, "~> 1.0"},
       {:plug_cowboy, "~> 2.7"},
